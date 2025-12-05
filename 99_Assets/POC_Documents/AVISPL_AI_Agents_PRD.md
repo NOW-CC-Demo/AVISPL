@@ -34,7 +34,7 @@ These challenges result in extended resolution times, increased operational cost
 - **Accelerate Remote Resolution**: Increase the proportion of cases resolved without field dispatch
 
 ### Measurable Objectives
-- **Increase Remote Resolution Rate**: From 50% to 60-70% for non-Symphony cases within 6 months
+- **Increase Remote Resolution Rate**: From 50% to 60-70% for non-Symphony cases
 - **Reduce Case Triage Time**: From 4-6 hours to under 2 hours for case information enrichment
 - **Improve First Visit Resolution**: From 70% to 80% for field dispatches requiring on-site service
 - **Reduce Average Dispatch Duration**: From 4 hours to 2 hours through better preparation and context
@@ -79,51 +79,36 @@ These challenges result in extended resolution times, increased operational cost
 
 ## 4. Use Cases
 
-### UC-1: AI-Assisted Case Enrichment
-**Actor**: Case Manager (TSR)
-**Scenario**: A case arrives via email describing "podium panel not working" at a customer site. The Case Manager uses AI to automatically populate contract information, identify the specific room configuration from SDCS, retrieve equipment models, and suggest initial support pathway based on customer entitlement.
-**Outcome**: Case information complete in under 30 minutes instead of 4-6 hours
-
-### UC-2: Remote Troubleshooting Intelligence
+### UC-1: Remote Troubleshooting Intelligence
 **Actor**: TSE (Technical Support Engineer)
 **Scenario**: An Extron podium panel issue is assigned to a TSE. The AI agent automatically retrieves the specific model from SDCS documentation (CAD drawings, bill of materials), searches manufacturer troubleshooting guides, reviews historical case resolutions for the same location/equipment, and generates a prioritized troubleshooting plan with step-by-step instructions.
 **Outcome**: TSE has comprehensive troubleshooting guide within minutes, increasing likelihood of remote resolution
 
-### UC-3: Intelligent Field Dispatch Coordination
+### UC-2: Intelligent Field Dispatch Coordination
 **Actor**: Dispatch Manager
 **Scenario**: A case requires on-site service. The AI agent analyzes required skills (based on equipment type and problem description), evaluates field technician locations, availability, and skill matrices, and recommends the optimal technician. It also generates a comprehensive work order summary including historical context, previous resolution notes, and specific equipment documentation.
 **Outcome**: Right technician dispatched with complete context, increasing first-visit resolution
 
-### UC-4: Automated Knowledge Generation
+### UC-3: Automated Knowledge Generation
 **Actor**: TSE or Field Technician
 **Scenario**: Upon case closure, the AI reviews resolution notes, problem description, troubleshooting steps, and equipment details to auto-generate a draft knowledge article. The article is presented to the resolver for review/approval before entering the knowledge workflow.
 **Outcome**: 80% of cases generate knowledge candidates with minimal human effort
 
-### UC-5: Major Case Pattern Detection
+### UC-4: Major Case Pattern Detection
 **Actor**: Case Manager / TSE
 **Scenario**: Multiple cases arrive describing similar symptoms for a specific device model. The AI agent identifies the pattern, suggests creating or associating with a major/parent case, and auto-links related child cases.
 **Outcome**: Faster identification of widespread issues, reduced redundant troubleshooting
 
-### UC-6: Proactive Alert Case Resolution
-**Actor**: System (automated)
-**Scenario**: Symphony generates an alert for device latency. The AI agent automatically accesses the customer environment, performs initial diagnostic checks, determines if the issue self-resolved, and either auto-closes the case or escalates with diagnostic context.
-**Outcome**: Reduced manual intervention on Symphony-generated cases (currently 70% of volume)
+### UC-5: Procedural Knowledge Assistant
+**Actor**: TSE, TSR, Field Technician
+**Scenario**: A TSE needs to create a customer quote but doesn't remember the exact procedure. The AI Assistant is invoked directly from ServiceNow and provides step-by-step guidance by retrieving the relevant how-to documentation from SharePoint. The assistant answers follow-up questions like "What approval level is needed for discounts over 20%?" by accessing internal policy documentation and knowledge base articles.
+**Outcome**: Immediate access to procedural knowledge without leaving ServiceNow, reducing time spent searching documentation and enabling faster task completion
 
 ---
 
 ## 5. Key Features
 
-### Priority 1: Remote Troubleshooting Agent
-**Purpose**: Aggregate multi-source data to provide comprehensive troubleshooting guidance
-**Capabilities**:
-- Query SDCS SharePoint for as-built CAD drawings and bills of materials
-- Search ServiceNow case history for location/equipment patterns
-- Index and retrieve manufacturer documentation (Extron, Polycom, etc.)
-- Generate prioritized troubleshooting steps based on problem description
-- Present visual documentation (network diagrams, schematics) with contextual analysis
-- Suggest remote vs. on-site resolution pathway
-
-### Priority 2: Knowledge Generation Assistant
+### Priority 1: Knowledge Generation Assistant
 **Purpose**: Reduce friction in knowledge article creation
 **Capabilities**:
 - Auto-draft knowledge articles from resolution notes
@@ -132,7 +117,7 @@ These challenges result in extended resolution times, increased operational cost
 - Route to knowledge approval workflow
 - Track knowledge coverage gaps
 
-### Priority 3: Dispatch Coordinator Agent
+### Priority 2: Dispatch Coordinator Agent
 **Purpose**: Optimize field service assignment and preparation
 **Capabilities**:
 - Evaluate technician skills, location, and availability
@@ -142,22 +127,12 @@ These challenges result in extended resolution times, increased operational cost
 - Highlight equipment-specific documentation
 - Aggregate upstream troubleshooting attempts
 
-### Priority 4: Case Queue Intelligence (AWA Enhancement)
-**Purpose**: Intelligent case assignment for remote support teams
-**Capabilities**:
-- Auto-populate case contract and contact information
-- Route based on account relationships (e.g., dedicated Polycom team)
-- Balance workload across available agents
-- Consider skills, capacity, and case complexity
-- Auto-suggest major case associations for known issues
-
-### Priority 5: AI Assistant for Agent Personas
+### Priority 3: AI Assistant for Agent Personas
 **Purpose**: Provide in-context assistance within ServiceNow
 **Capabilities**:
 - Answer procedural questions ("How do I create a quote?")
 - Access knowledge base and SharePoint how-to documentation
 - Provide equipment-specific guidance
-- Suggest next-best actions based on case state
 
 ---
 

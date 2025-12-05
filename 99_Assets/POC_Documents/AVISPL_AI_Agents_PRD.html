@@ -586,7 +586,6 @@
                             <th>Objective</th>
                             <th>Current State</th>
                             <th>Target State</th>
-                            <th>Timeframe</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -594,37 +593,31 @@
                             <td>Remote Resolution Rate</td>
                             <td>50%</td>
                             <td>60-70%</td>
-                            <td>6 months</td>
                         </tr>
                         <tr>
                             <td>Case Triage Time</td>
                             <td>4-6 hours</td>
                             <td>&lt; 2 hours</td>
-                            <td>6 months</td>
                         </tr>
                         <tr>
                             <td>First Visit Resolution</td>
                             <td>70%</td>
                             <td>80%</td>
-                            <td>6 months</td>
                         </tr>
                         <tr>
                             <td>Average Dispatch Duration</td>
                             <td>4 hours</td>
                             <td>2 hours</td>
-                            <td>6 months</td>
                         </tr>
                         <tr>
                             <td>Knowledge Article Creation</td>
                             <td>Ad-hoc</td>
                             <td>80% of cases</td>
-                            <td>6 months</td>
                         </tr>
                         <tr>
                             <td>Return Visits Reduction</td>
                             <td>30%</td>
                             <td>18% (40% reduction)</td>
-                            <td>6 months</td>
                         </tr>
                     </tbody>
                 </table>
@@ -680,16 +673,7 @@
                 <h2>4. Use Cases</h2>
 
                 <div class="use-case">
-                    <h3>UC-1: AI-Assisted Case Enrichment</h3>
-                    <span class="actor">Case Manager (TSR)</span>
-                    <p><strong>Scenario:</strong> A case arrives via email describing "podium panel not working" at a customer site. The Case Manager uses AI to automatically populate contract information, identify the specific room configuration from SDCS, retrieve equipment models, and suggest initial support pathway based on customer entitlement.</p>
-                    <div class="outcome">
-                        <strong>Outcome:</strong> Case information complete in under 30 minutes instead of 4-6 hours
-                    </div>
-                </div>
-
-                <div class="use-case">
-                    <h3>UC-2: Remote Troubleshooting Intelligence</h3>
+                    <h3>UC-1: Remote Troubleshooting Intelligence</h3>
                     <span class="actor">TSE (Technical Support Engineer)</span>
                     <p><strong>Scenario:</strong> An Extron podium panel issue is assigned to a TSE. The AI agent automatically retrieves the specific model from SDCS documentation (CAD drawings, bill of materials), searches manufacturer troubleshooting guides, reviews historical case resolutions for the same location/equipment, and generates a prioritized troubleshooting plan with step-by-step instructions.</p>
                     <div class="outcome">
@@ -698,7 +682,7 @@
                 </div>
 
                 <div class="use-case">
-                    <h3>UC-3: Intelligent Field Dispatch Coordination</h3>
+                    <h3>UC-2: Intelligent Field Dispatch Coordination</h3>
                     <span class="actor">Dispatch Manager</span>
                     <p><strong>Scenario:</strong> A case requires on-site service. The AI agent analyzes required skills (based on equipment type and problem description), evaluates field technician locations, availability, and skill matrices, and recommends the optimal technician. It also generates a comprehensive work order summary including historical context, previous resolution notes, and specific equipment documentation.</p>
                     <div class="outcome">
@@ -707,7 +691,7 @@
                 </div>
 
                 <div class="use-case">
-                    <h3>UC-4: Automated Knowledge Generation</h3>
+                    <h3>UC-3: Automated Knowledge Generation</h3>
                     <span class="actor">TSE or Field Technician</span>
                     <p><strong>Scenario:</strong> Upon case closure, the AI reviews resolution notes, problem description, troubleshooting steps, and equipment details to auto-generate a draft knowledge article. The article is presented to the resolver for review/approval before entering the knowledge workflow.</p>
                     <div class="outcome">
@@ -716,7 +700,7 @@
                 </div>
 
                 <div class="use-case">
-                    <h3>UC-5: Major Case Pattern Detection</h3>
+                    <h3>UC-4: Major Case Pattern Detection</h3>
                     <span class="actor">Case Manager / TSE</span>
                     <p><strong>Scenario:</strong> Multiple cases arrive describing similar symptoms for a specific device model. The AI agent identifies the pattern, suggests creating or associating with a major/parent case, and auto-links related child cases.</p>
                     <div class="outcome">
@@ -725,11 +709,11 @@
                 </div>
 
                 <div class="use-case">
-                    <h3>UC-6: Proactive Alert Case Resolution</h3>
-                    <span class="actor">System (automated)</span>
-                    <p><strong>Scenario:</strong> Symphony generates an alert for device latency. The AI agent automatically accesses the customer environment, performs initial diagnostic checks, determines if the issue self-resolved, and either auto-closes the case or escalates with diagnostic context.</p>
+                    <h3>UC-5: Procedural Knowledge Assistant</h3>
+                    <span class="actor">TSE, TSR, Field Technician</span>
+                    <p><strong>Scenario:</strong> A TSE needs to create a customer quote but doesn't remember the exact procedure. The AI Assistant is invoked directly from ServiceNow and provides step-by-step guidance by retrieving the relevant how-to documentation from SharePoint. The assistant answers follow-up questions like "What approval level is needed for discounts over 20%?" by accessing internal policy documentation and knowledge base articles.</p>
                     <div class="outcome">
-                        <strong>Outcome:</strong> Reduced manual intervention on Symphony-generated cases (currently 70% of volume)
+                        <strong>Outcome:</strong> Immediate access to procedural knowledge without leaving ServiceNow, reducing time spent searching documentation and enabling faster task completion
                     </div>
                 </div>
             </section>
@@ -739,22 +723,7 @@
                 <h2>5. Key Features</h2>
 
                 <div class="feature-box">
-                    <h3>Priority 1: Remote Troubleshooting Agent</h3>
-                    <h4>Purpose</h4>
-                    <p>Aggregate multi-source data to provide comprehensive troubleshooting guidance</p>
-                    <h4>Capabilities</h4>
-                    <ul>
-                        <li>Query SDCS SharePoint for as-built CAD drawings and bills of materials</li>
-                        <li>Search ServiceNow case history for location/equipment patterns</li>
-                        <li>Index and retrieve manufacturer documentation (Extron, Polycom, etc.)</li>
-                        <li>Generate prioritized troubleshooting steps based on problem description</li>
-                        <li>Present visual documentation (network diagrams, schematics) with contextual analysis</li>
-                        <li>Suggest remote vs. on-site resolution pathway</li>
-                    </ul>
-                </div>
-
-                <div class="feature-box">
-                    <h3>Priority 2: Knowledge Generation Assistant</h3>
+                    <h3>Priority 1: Knowledge Generation Assistant</h3>
                     <h4>Purpose</h4>
                     <p>Reduce friction in knowledge article creation</p>
                     <h4>Capabilities</h4>
@@ -768,7 +737,7 @@
                 </div>
 
                 <div class="feature-box">
-                    <h3>Priority 3: Dispatch Coordinator Agent</h3>
+                    <h3>Priority 2: Dispatch Coordinator Agent</h3>
                     <h4>Purpose</h4>
                     <p>Optimize field service assignment and preparation</p>
                     <h4>Capabilities</h4>
@@ -783,21 +752,7 @@
                 </div>
 
                 <div class="feature-box">
-                    <h3>Priority 4: Case Queue Intelligence (AWA Enhancement)</h3>
-                    <h4>Purpose</h4>
-                    <p>Intelligent case assignment for remote support teams</p>
-                    <h4>Capabilities</h4>
-                    <ul>
-                        <li>Auto-populate case contract and contact information</li>
-                        <li>Route based on account relationships (e.g., dedicated Polycom team)</li>
-                        <li>Balance workload across available agents</li>
-                        <li>Consider skills, capacity, and case complexity</li>
-                        <li>Auto-suggest major case associations for known issues</li>
-                    </ul>
-                </div>
-
-                <div class="feature-box">
-                    <h3>Priority 5: AI Assistant for Agent Personas</h3>
+                    <h3>Priority 3: AI Assistant for Agent Personas</h3>
                     <h4>Purpose</h4>
                     <p>Provide in-context assistance within ServiceNow</p>
                     <h4>Capabilities</h4>
@@ -805,7 +760,6 @@
                         <li>Answer procedural questions ("How do I create a quote?")</li>
                         <li>Access knowledge base and SharePoint how-to documentation</li>
                         <li>Provide equipment-specific guidance</li>
-                        <li>Suggest next-best actions based on case state</li>
                     </ul>
                 </div>
             </section>
