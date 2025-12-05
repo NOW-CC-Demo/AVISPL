@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVISPL AI-Powered Service Management Enhancement - PRD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --servicenow-green: #62D84E;
+            --servicenow-blue: #1B3454;
+            --avispl-teal: #009999;
+            --avispl-navy: #003366;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --bg-light: #F9FAFB;
+            --bg-white: #FFFFFF;
+            --border-color: #E5E7EB;
+            --accent-orange: #F97316;
+            --success-green: #10B981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            background: var(--servicenow-blue);
+            color: white;
+            padding: 2rem 1.5rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            color: var(--servicenow-green);
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar nav ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.875rem;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar nav ul li a:hover,
+        .sidebar nav ul li a.active {
+            background: rgba(98, 216, 78, 0.1);
+            color: var(--servicenow-green);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--bg-white);
+            padding: 3rem;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Header */
+        .document-header {
+            border-bottom: 3px solid var(--avispl-teal);
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .document-header h1 {
+            font-size: 2.5rem;
+            color: var(--servicenow-blue);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .document-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .meta-item {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 3px solid var(--avispl-teal);
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta-item span {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 2rem;
+        }
+
+        section h2 {
+            font-size: 1.875rem;
+            color: var(--servicenow-blue);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            color: var(--avispl-navy);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        section h4 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        ul li, ol li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        /* Emphasis Boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 153, 153, 0.05) 0%, rgba(98, 216, 78, 0.05) 100%);
+            border-left: 4px solid var(--avispl-teal);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .highlight-box strong {
+            color: var(--avispl-teal);
+        }
+
+        /* Persona Cards */
+        .persona-card {
+            background: var(--bg-light);
+            border: 2px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .persona-card h3 {
+            color: var(--avispl-teal);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .persona-card p {
+            margin-bottom: 0.75rem;
+        }
+
+        .persona-card strong {
+            color: var(--text-primary);
+            display: inline-block;
+            min-width: 120px;
+        }
+
+        /* Use Case Cards */
+        .use-case {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .use-case h3 {
+            color: var(--servicenow-blue);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .use-case .actor {
+            display: inline-block;
+            background: var(--avispl-teal);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .use-case .outcome {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 3px solid var(--success-green);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 0.375rem 0.375rem 0;
+        }
+
+        .use-case .outcome strong {
+            color: var(--success-green);
+        }
+
+        /* Feature Boxes */
+        .feature-box {
+            background: linear-gradient(135deg, rgba(27, 52, 84, 0.03) 0%, rgba(0, 153, 153, 0.03) 100%);
+            border: 2px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-box h3 {
+            color: var(--avispl-teal);
+            margin-top: 0;
+            font-size: 1.375rem;
+        }
+
+        .feature-box h4 {
+            color: var(--servicenow-blue);
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        thead {
+            background: var(--servicenow-blue);
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* Risk Boxes */
+        .risk-high {
+            border-left: 4px solid #EF4444;
+            background: rgba(239, 68, 68, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .risk-medium {
+            border-left: 4px solid #F59E0B;
+            background: rgba(245, 158, 11, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .risk-high h4, .risk-medium h4 {
+            margin-top: 0;
+        }
+
+        .risk-high h4 {
+            color: #EF4444;
+        }
+
+        .risk-medium h4 {
+            color: #F59E0B;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--avispl-teal), var(--servicenow-green));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4375rem;
+            top: 0.375rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--avispl-teal);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--avispl-teal);
+        }
+
+        .timeline-item h3 {
+            color: var(--avispl-teal);
+            margin-top: 0;
+        }
+
+        /* Stakeholder Cards */
+        .stakeholder-group {
+            background: var(--bg-light);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stakeholder-group h3 {
+            color: var(--servicenow-blue);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .stakeholder {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stakeholder:last-child {
+            border-bottom: none;
+        }
+
+        .stakeholder strong {
+            color: var(--avispl-teal);
+        }
+
+        /* Print Button */
+        .actions {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .btn {
+            background: var(--avispl-teal);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #007777;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                display: block;
+            }
+
+            .sidebar,
+            .actions {
+                display: none;
+            }
+
+            .main-content {
+                padding: 0;
+                box-shadow: none;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(98, 216, 78, 0.3);
+            border-radius: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(98, 216, 78, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h3>Contents</h3>
+            <nav>
+                <ul>
+                    <li><a href="#problem-statement">1. Problem Statement</a></li>
+                    <li><a href="#goals">2. Goals & Objectives</a></li>
+                    <li><a href="#personas">3. User Personas</a></li>
+                    <li><a href="#use-cases">4. Use Cases</a></li>
+                    <li><a href="#features">5. Key Features</a></li>
+                    <li><a href="#metrics">6. Success Metrics</a></li>
+                    <li><a href="#assumptions">7. Assumptions</a></li>
+                    <li><a href="#timeline">8. Timeline</a></li>
+                    <li><a href="#stakeholders">9. Stakeholders</a></li>
+                    <li><a href="#constraints">10. Constraints</a></li>
+                    <li><a href="#questions">Open Questions</a></li>
+                    <li><a href="#risks">Risks</a></li>
+                    <li><a href="#appendix">Appendix</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Document Header -->
+            <header class="document-header">
+                <h1>Product Requirements Document:<br>AVISPL AI-Powered Service Management Enhancement</h1>
+                <div class="document-meta">
+                    <div class="meta-item">
+                        <strong>Version</strong>
+                        <span>1.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Date</strong>
+                        <span>December 5, 2025</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Product Owner</strong>
+                        <span>Chris Clancy, ServiceNow AI Foundry</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Stakeholders</strong>
+                        <span>AVISPL Service Management Team</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Section 1: Problem Statement -->
+            <section id="problem-statement">
+                <h2>1. Problem Statement</h2>
+                <p>AVISPL's service delivery organization faces significant operational challenges that impact service efficiency, customer satisfaction, and resource utilization:</p>
+
+                <div class="highlight-box">
+                    <p><strong>Manual Case Triage & Research</strong>: Case managers spend 4-6 hours manually enriching case information, researching equipment documentation across multiple systems (ServiceNow, SharePoint/SDCS, manufacturer websites), and determining appropriate support pathways.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Knowledge Fragmentation</strong>: Critical technical knowledge is dispersed across ServiceNow (1000+ legacy articles), SharePoint sites, manufacturer documentation, and tribal knowledge. Knowledge creation is inconsistent and infrequent, limiting institutional learning.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Inefficient Field Dispatch</strong>: Field technicians experience approximately 30% return visits due to insufficient preparation, skills mismatch, or incomplete contextual information. Average dispatch time is 4 hours, with technicians often starting troubleshooting from scratch.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Limited Remote Resolution</strong>: Only ~50% of non-Symphony cases achieve remote resolution despite 70% of all cases being potentially remotely resolvable. Manual processes limit the ability to scale remote support capabilities.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Resource Capacity Constraints</strong>: Manual processes create bottlenecks in case management queues (TSR/TSE teams) and limit the organization's ability to handle the approximately 15,000 monthly cases efficiently.</p>
+                </div>
+
+                <p style="margin-top: 1.5rem; font-weight: 500;">These challenges result in extended resolution times, increased operational costs (unnecessary truck rolls), diminished customer satisfaction, and underutilization of available technical resources.</p>
+            </section>
+
+            <!-- Section 2: Goals and Objectives -->
+            <section id="goals">
+                <h2>2. Goals and Objectives</h2>
+
+                <h3>Qualitative Goals</h3>
+                <ul>
+                    <li><strong>Empower Service Teams</strong>: Provide AI-assisted tools that augment human decision-making rather than replace expertise</li>
+                    <li><strong>Improve Customer Experience</strong>: Reduce resolution times and increase first-contact resolution rates</li>
+                    <li><strong>Enable Knowledge Continuity</strong>: Capture and leverage institutional knowledge systematically</li>
+                    <li><strong>Accelerate Remote Resolution</strong>: Increase the proportion of cases resolved without field dispatch</li>
+                </ul>
+
+                <h3>Measurable Objectives</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Objective</th>
+                            <th>Current State</th>
+                            <th>Target State</th>
+                            <th>Timeframe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Remote Resolution Rate</td>
+                            <td>50%</td>
+                            <td>60-70%</td>
+                            <td>6 months</td>
+                        </tr>
+                        <tr>
+                            <td>Case Triage Time</td>
+                            <td>4-6 hours</td>
+                            <td>&lt; 2 hours</td>
+                            <td>6 months</td>
+                        </tr>
+                        <tr>
+                            <td>First Visit Resolution</td>
+                            <td>70%</td>
+                            <td>80%</td>
+                            <td>6 months</td>
+                        </tr>
+                        <tr>
+                            <td>Average Dispatch Duration</td>
+                            <td>4 hours</td>
+                            <td>2 hours</td>
+                            <td>6 months</td>
+                        </tr>
+                        <tr>
+                            <td>Knowledge Article Creation</td>
+                            <td>Ad-hoc</td>
+                            <td>80% of cases</td>
+                            <td>6 months</td>
+                        </tr>
+                        <tr>
+                            <td>Return Visits Reduction</td>
+                            <td>30%</td>
+                            <td>18% (40% reduction)</td>
+                            <td>6 months</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Section 3: User Personas -->
+            <section id="personas">
+                <h2>3. User Personas</h2>
+
+                <div class="persona-card">
+                    <h3>Case Manager / TSR (Technical Support Representative)</h3>
+                    <p><strong>Role:</strong> Front-line case triage and administrative support</p>
+                    <p><strong>Motivations:</strong> Process cases efficiently, ensure accurate information, route to appropriate resources</p>
+                    <p><strong>Pain Points:</strong> Manual data entry, hunting for contract information, unclear customer entitlements</p>
+                    <p><strong>Context:</strong> Handles global queue, processes all incoming cases before assignment</p>
+                </div>
+
+                <div class="persona-card">
+                    <h3>TSE (Technical Support Engineer)</h3>
+                    <p><strong>Role:</strong> Remote technical troubleshooting and resolution</p>
+                    <p><strong>Motivations:</strong> Solve customer problems quickly, avoid escalations, build technical expertise</p>
+                    <p><strong>Pain Points:</strong> Scattered documentation, limited SDCS access efficiency, repetitive research tasks</p>
+                    <p><strong>Context:</strong> Needs access to equipment specs, troubleshooting guides, historical case data</p>
+                </div>
+
+                <div class="persona-card">
+                    <h3>Field Service Technician</h3>
+                    <p><strong>Role:</strong> On-site technical resolution</p>
+                    <p><strong>Motivations:</strong> First-visit resolution, efficient site visits, clear work instructions</p>
+                    <p><strong>Pain Points:</strong> Arriving on-site without adequate context, skills mismatch, redundant troubleshooting</p>
+                    <p><strong>Context:</strong> Mobile workforce requiring comprehensive pre-visit briefing and historical context</p>
+                </div>
+
+                <div class="persona-card">
+                    <h3>Dispatch Manager</h3>
+                    <p><strong>Role:</strong> Work order assignment and field resource coordination</p>
+                    <p><strong>Motivations:</strong> Optimal resource utilization, skills-based routing, minimize travel time</p>
+                    <p><strong>Pain Points:</strong> Manual skills matching, geographic optimization, incomplete case context</p>
+                    <p><strong>Context:</strong> Manages regional technician teams with varying skill sets</p>
+                </div>
+
+                <div class="persona-card">
+                    <h3>Knowledge Manager</h3>
+                    <p><strong>Role:</strong> Knowledge base curation and governance</p>
+                    <p><strong>Motivations:</strong> Maintain knowledge quality, encourage contribution, ensure discoverability</p>
+                    <p><strong>Pain Points:</strong> Low contribution rates, inconsistent formatting, outdated content</p>
+                    <p><strong>Context:</strong> Loosely defined process, limited resources for active curation</p>
+                </div>
+            </section>
+
+            <!-- Section 4: Use Cases -->
+            <section id="use-cases">
+                <h2>4. Use Cases</h2>
+
+                <div class="use-case">
+                    <h3>UC-1: AI-Assisted Case Enrichment</h3>
+                    <span class="actor">Case Manager (TSR)</span>
+                    <p><strong>Scenario:</strong> A case arrives via email describing "podium panel not working" at a customer site. The Case Manager uses AI to automatically populate contract information, identify the specific room configuration from SDCS, retrieve equipment models, and suggest initial support pathway based on customer entitlement.</p>
+                    <div class="outcome">
+                        <strong>Outcome:</strong> Case information complete in under 30 minutes instead of 4-6 hours
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <h3>UC-2: Remote Troubleshooting Intelligence</h3>
+                    <span class="actor">TSE (Technical Support Engineer)</span>
+                    <p><strong>Scenario:</strong> An Extron podium panel issue is assigned to a TSE. The AI agent automatically retrieves the specific model from SDCS documentation (CAD drawings, bill of materials), searches manufacturer troubleshooting guides, reviews historical case resolutions for the same location/equipment, and generates a prioritized troubleshooting plan with step-by-step instructions.</p>
+                    <div class="outcome">
+                        <strong>Outcome:</strong> TSE has comprehensive troubleshooting guide within minutes, increasing likelihood of remote resolution
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <h3>UC-3: Intelligent Field Dispatch Coordination</h3>
+                    <span class="actor">Dispatch Manager</span>
+                    <p><strong>Scenario:</strong> A case requires on-site service. The AI agent analyzes required skills (based on equipment type and problem description), evaluates field technician locations, availability, and skill matrices, and recommends the optimal technician. It also generates a comprehensive work order summary including historical context, previous resolution notes, and specific equipment documentation.</p>
+                    <div class="outcome">
+                        <strong>Outcome:</strong> Right technician dispatched with complete context, increasing first-visit resolution
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <h3>UC-4: Automated Knowledge Generation</h3>
+                    <span class="actor">TSE or Field Technician</span>
+                    <p><strong>Scenario:</strong> Upon case closure, the AI reviews resolution notes, problem description, troubleshooting steps, and equipment details to auto-generate a draft knowledge article. The article is presented to the resolver for review/approval before entering the knowledge workflow.</p>
+                    <div class="outcome">
+                        <strong>Outcome:</strong> 80% of cases generate knowledge candidates with minimal human effort
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <h3>UC-5: Major Case Pattern Detection</h3>
+                    <span class="actor">Case Manager / TSE</span>
+                    <p><strong>Scenario:</strong> Multiple cases arrive describing similar symptoms for a specific device model. The AI agent identifies the pattern, suggests creating or associating with a major/parent case, and auto-links related child cases.</p>
+                    <div class="outcome">
+                        <strong>Outcome:</strong> Faster identification of widespread issues, reduced redundant troubleshooting
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <h3>UC-6: Proactive Alert Case Resolution</h3>
+                    <span class="actor">System (automated)</span>
+                    <p><strong>Scenario:</strong> Symphony generates an alert for device latency. The AI agent automatically accesses the customer environment, performs initial diagnostic checks, determines if the issue self-resolved, and either auto-closes the case or escalates with diagnostic context.</p>
+                    <div class="outcome">
+                        <strong>Outcome:</strong> Reduced manual intervention on Symphony-generated cases (currently 70% of volume)
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Key Features -->
+            <section id="features">
+                <h2>5. Key Features</h2>
+
+                <div class="feature-box">
+                    <h3>Priority 1: Remote Troubleshooting Agent</h3>
+                    <h4>Purpose</h4>
+                    <p>Aggregate multi-source data to provide comprehensive troubleshooting guidance</p>
+                    <h4>Capabilities</h4>
+                    <ul>
+                        <li>Query SDCS SharePoint for as-built CAD drawings and bills of materials</li>
+                        <li>Search ServiceNow case history for location/equipment patterns</li>
+                        <li>Index and retrieve manufacturer documentation (Extron, Polycom, etc.)</li>
+                        <li>Generate prioritized troubleshooting steps based on problem description</li>
+                        <li>Present visual documentation (network diagrams, schematics) with contextual analysis</li>
+                        <li>Suggest remote vs. on-site resolution pathway</li>
+                    </ul>
+                </div>
+
+                <div class="feature-box">
+                    <h3>Priority 2: Knowledge Generation Assistant</h3>
+                    <h4>Purpose</h4>
+                    <p>Reduce friction in knowledge article creation</p>
+                    <h4>Capabilities</h4>
+                    <ul>
+                        <li>Auto-draft knowledge articles from resolution notes</li>
+                        <li>Extract key information: problem, solution, equipment, steps</li>
+                        <li>Format content for AI consumption (simple, structured)</li>
+                        <li>Route to knowledge approval workflow</li>
+                        <li>Track knowledge coverage gaps</li>
+                    </ul>
+                </div>
+
+                <div class="feature-box">
+                    <h3>Priority 3: Dispatch Coordinator Agent</h3>
+                    <h4>Purpose</h4>
+                    <p>Optimize field service assignment and preparation</p>
+                    <h4>Capabilities</h4>
+                    <ul>
+                        <li>Evaluate technician skills, location, and availability</li>
+                        <li>Match case requirements to technician capabilities</li>
+                        <li>Generate comprehensive work order summaries</li>
+                        <li>Include historical case context for the location</li>
+                        <li>Highlight equipment-specific documentation</li>
+                        <li>Aggregate upstream troubleshooting attempts</li>
+                    </ul>
+                </div>
+
+                <div class="feature-box">
+                    <h3>Priority 4: Case Queue Intelligence (AWA Enhancement)</h3>
+                    <h4>Purpose</h4>
+                    <p>Intelligent case assignment for remote support teams</p>
+                    <h4>Capabilities</h4>
+                    <ul>
+                        <li>Auto-populate case contract and contact information</li>
+                        <li>Route based on account relationships (e.g., dedicated Polycom team)</li>
+                        <li>Balance workload across available agents</li>
+                        <li>Consider skills, capacity, and case complexity</li>
+                        <li>Auto-suggest major case associations for known issues</li>
+                    </ul>
+                </div>
+
+                <div class="feature-box">
+                    <h3>Priority 5: AI Assistant for Agent Personas</h3>
+                    <h4>Purpose</h4>
+                    <p>Provide in-context assistance within ServiceNow</p>
+                    <h4>Capabilities</h4>
+                    <ul>
+                        <li>Answer procedural questions ("How do I create a quote?")</li>
+                        <li>Access knowledge base and SharePoint how-to documentation</li>
+                        <li>Provide equipment-specific guidance</li>
+                        <li>Suggest next-best actions based on case state</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 6: Success Metrics -->
+            <section id="metrics">
+                <h2>6. Success Metrics</h2>
+
+                <h3>Operational Efficiency</h3>
+                <ul>
+                    <li><strong>Case Triage Time</strong>: Average time from case creation to "information complete" status</li>
+                    <li><strong>Remote Resolution Rate</strong>: Percentage of cases closed without field dispatch</li>
+                    <li><strong>Field Dispatch Duration</strong>: Average time spent on-site per work order task</li>
+                    <li><strong>Queue Wait Time</strong>: Average time cases spend in assignment queues</li>
+                </ul>
+
+                <h3>Quality Metrics</h3>
+                <ul>
+                    <li><strong>First Visit Resolution Rate</strong>: Percentage of dispatches resolved on first visit</li>
+                    <li><strong>Return Visit Causes</strong>: Distribution of reasons for incomplete work orders</li>
+                    <li><strong>Knowledge Article Creation Rate</strong>: Articles generated per 100 closed cases</li>
+                    <li><strong>Major Case Detection Time</strong>: Time to identify and associate related cases</li>
+                </ul>
+
+                <h3>User Adoption</h3>
+                <ul>
+                    <li><strong>Agent Usage Frequency</strong>: Daily interactions with AI assistant</li>
+                    <li><strong>Troubleshooting Agent Utilization</strong>: Percentage of eligible cases using remote agent</li>
+                    <li><strong>Knowledge Approval Rate</strong>: Percentage of AI-drafted articles approved/published</li>
+                    <li><strong>User Satisfaction Score</strong>: Agent feedback on AI tool usefulness (1-5 scale)</li>
+                </ul>
+
+                <h3>Business Impact</h3>
+                <ul>
+                    <li><strong>Cost per Case</strong>: Total operational cost divided by cases resolved</li>
+                    <li><strong>Truck Roll Avoidance Rate</strong>: Cases resolved remotely vs. historical dispatch rate</li>
+                    <li><strong>Customer Satisfaction (CSAT)</strong>: Survey scores post-resolution</li>
+                    <li><strong>Mean Time to Resolution (MTTR)</strong>: Average time from case creation to closure</li>
+                </ul>
+            </section>
+
+            <!-- Section 7: Assumptions -->
+            <section id="assumptions">
+                <h2>7. Assumptions</h2>
+
+                <h3>Technical Assumptions</h3>
+                <ul>
+                    <li>ServiceNow evaluation instance remains accessible and stable</li>
+                    <li>SDCS SharePoint can be accessed via external content connectors or dev tenant</li>
+                    <li>Field service skills matrix population will be completed for technicians</li>
+                    <li>Symphony alert integration continues to generate cases as structured data</li>
+                    <li>Manufacturer websites (Extron, Polycom, etc.) are publicly accessible for indexing</li>
+                </ul>
+
+                <h3>Process Assumptions</h3>
+                <ul>
+                    <li>Case managers will continue manual queue-based assignment during AWA configuration</li>
+                    <li>Knowledge approval workflows exist and can accommodate increased article volume</li>
+                    <li>Field technicians will document resolution notes consistently</li>
+                    <li>TSE/TSR teams have reliable access to customer environments for remote troubleshooting</li>
+                </ul>
+
+                <h3>Organizational Assumptions</h3>
+                <ul>
+                    <li>Leadership support for AI adoption and change management</li>
+                    <li>Users are willing to trial new AI capabilities with feedback loops</li>
+                    <li>IT security team will collaborate on SharePoint integration requirements</li>
+                    <li>Change adoption will be gradual given organizational culture (acknowledged slow adoption)</li>
+                </ul>
+
+                <h3>Data Assumptions</h3>
+                <ul>
+                    <li>Historical case resolution notes contain sufficient detail for knowledge generation</li>
+                    <li>SDCS folder structure is consistent (e.g., folder 95 contains schematics)</li>
+                    <li>Skills data for remote support teams will be captured in ServiceNow in 2026</li>
+                    <li>Current case volume (~15,000/month) remains stable</li>
+                </ul>
+            </section>
+
+            <!-- Section 8: Timeline -->
+            <section id="timeline">
+                <h2>8. Timeline</h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Phase 1: Foundation & Quick Wins (Weeks 1-4)</h3>
+                        <ul>
+                            <li><strong>Week 1-2</strong>: Environment setup, data access validation (SDCS dev tenant)</li>
+                            <li><strong>Week 2-3</strong>: Deploy knowledge generation AI skill (out-of-box)</li>
+                            <li><strong>Week 3-4</strong>: Index external manufacturer content (Extron, Polycom)</li>
+                            <li><strong>Deliverable</strong>: Functional knowledge generation on case closure</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h3>Phase 2: Remote Troubleshooting Agent (Weeks 5-8)</h3>
+                        <ul>
+                            <li><strong>Week 5-6</strong>: Configure external content connectors for SDCS SharePoint</li>
+                            <li><strong>Week 6-7</strong>: Build remote troubleshooting agent with multi-source queries</li>
+                            <li><strong>Week 7-8</strong>: Test with sample cases, refine data sources</li>
+                            <li><strong>Deliverable</strong>: Remote troubleshooting agent providing aggregated guidance</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h3>Phase 3: Dispatch & Assignment Intelligence (Weeks 9-12)</h3>
+                        <ul>
+                            <li><strong>Week 9-10</strong>: Configure AWA for field service with skills-based routing</li>
+                            <li><strong>Week 10-11</strong>: Build dispatch coordinator agent for work order generation</li>
+                            <li><strong>Week 11-12</strong>: Test assignment workflows and summarization</li>
+                            <li><strong>Deliverable</strong>: Intelligent dispatch with contextual work orders</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h3>Phase 4: Evaluation & Iteration (Weeks 13-16)</h3>
+                        <ul>
+                            <li><strong>Week 13-14</strong>: User acceptance testing with TSE/TSR/field tech personas</li>
+                            <li><strong>Week 14-15</strong>: Gather feedback, refine agent behaviors</li>
+                            <li><strong>Week 15-16</strong>: Document findings, create production deployment plan</li>
+                            <li><strong>Deliverable</strong>: Production readiness assessment and roadmap</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h3>Future Enhancements (Post-Initial Sprint)</h3>
+                        <ul>
+                            <li>Knowledge hygiene agent (Q2 2026 alignment)</li>
+                            <li>WhatsApp/Chat integrations</li>
+                            <li>PMV (Preventive Maintenance Visit) automation</li>
+                            <li>Alert/event management intelligence</li>
+                            <li>Advanced AWA for remote support team (with skills capture)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: Stakeholders -->
+            <section id="stakeholders">
+                <h2>9. Stakeholders</h2>
+
+                <div class="stakeholder-group">
+                    <h3>Core Team</h3>
+                    <div class="stakeholder">
+                        <strong>Phil Caiazzo</strong>: Service Operations Lead (AVISPL) - Decision authority, process owner
+                    </div>
+                    <div class="stakeholder">
+                        <strong>Mike Dennis</strong>: Field Service Manager (AVISPL) - Field operations, technician experience
+                    </div>
+                    <div class="stakeholder">
+                        <strong>Aaron Seiden</strong>: ServiceNow Platform Owner (AVISPL) - Technical implementation, integrations
+                    </div>
+                    <div class="stakeholder">
+                        <strong>Peter Wychunis</strong>: Case Operations Lead (AVISPL) - Day-to-day workflows, process details
+                    </div>
+                    <div class="stakeholder">
+                        <strong>Chris Clancy</strong>: AI Foundry Lead (ServiceNow) - Solution architect, implementation lead
+                    </div>
+                </div>
+
+                <div class="stakeholder-group">
+                    <h3>Extended Stakeholders</h3>
+                    <div class="stakeholder">
+                        <strong>Keith Wachunas</strong>: Operations Team Member (AVISPL) - Detailed workflow input
+                    </div>
+                    <div class="stakeholder">
+                        <strong>Mike Buckner</strong>: ServiceNow Account Team - Strategic guidance, best practices
+                    </div>
+                    <div class="stakeholder">
+                        <strong>IT Security Team</strong> (AVISPL): SharePoint integration approval and configuration
+                    </div>
+                    <div class="stakeholder">
+                        <strong>TSE/TSR Teams</strong>: End users, feedback providers, adoption champions
+                    </div>
+                    <div class="stakeholder">
+                        <strong>Field Service Technicians</strong>: End users, work order quality validation
+                    </div>
+                    <div class="stakeholder">
+                        <strong>Knowledge Management Team</strong>: Article review and approval workflow owners
+                    </div>
+                </div>
+
+                <div class="stakeholder-group">
+                    <h3>Informed Parties</h3>
+                    <div class="stakeholder">
+                        <strong>AVISPL Executive Leadership</strong>: Budget approval, change management support
+                    </div>
+                    <div class="stakeholder">
+                        <strong>ServiceNow Product Teams</strong>: Feature feedback, platform capabilities input
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: Constraints -->
+            <section id="constraints">
+                <h2>10. Known Constraints or Dependencies</h2>
+
+                <h3>Technical Constraints</h3>
+                <ul>
+                    <li><strong>SharePoint Access</strong>: SDCS production environment contains sensitive data (pricing, credentials). Requires either:
+                        <ul>
+                            <li>Dev tenant with sanitized sample data, or</li>
+                            <li>Folder-level path restrictions (e.g., only folder 95 with schematics)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Skills Data Availability</strong>: Remote support skills matrix not yet in ServiceNow (2026 initiative)</li>
+                    <li><strong>Instance Limitations</strong>: Evaluation POC instance may have performance or data retention limits</li>
+                    <li><strong>External Content Indexing</strong>: Rate limits and access restrictions on manufacturer websites</li>
+                </ul>
+
+                <h3>Organizational Dependencies</h3>
+                <ul>
+                    <li><strong>IT Approval Cycles</strong>: SharePoint connector configuration requires IT DevOps team involvement</li>
+                    <li><strong>Change Management</strong>: Slow organizational adoption requires careful rollout and champion engagement</li>
+                    <li><strong>Resource Availability</strong>: Core stakeholder time for testing and feedback during sprint</li>
+                    <li><strong>Knowledge Process Maturity</strong>: Formal knowledge workflow being defined (starting Feb 2026)</li>
+                </ul>
+
+                <h3>Data Quality Dependencies</h3>
+                <ul>
+                    <li><strong>Resolution Notes Consistency</strong>: Variable quality of existing case resolution documentation</li>
+                    <li><strong>SDCS Standardization</strong>: Folder structure and document placement consistency varies</li>
+                    <li><strong>Alert Data Structure</strong>: Symphony alert quality and actionability</li>
+                    <li><strong>Contract Data Accuracy</strong>: Entitlement and service agreement information completeness</li>
+                </ul>
+
+                <h3>Process Dependencies</h3>
+                <ul>
+                    <li><strong>AWA Implementation</strong>: Field service AWA in progress; remote support AWA not yet started</li>
+                    <li><strong>Skills Capture</strong>: Field service skills populated; remote support skills pending</li>
+                    <li><strong>Knowledge Approval Workflow</strong>: Exists but loosely defined and infrequently used</li>
+                    <li><strong>Case Assignment Logic</strong>: Currently manual queue-based; AWA transition in progress</li>
+                </ul>
+
+                <h3>Timeline Risks</h3>
+                <ul>
+                    <li><strong>Security Approval Delays</strong>: IT security review of SharePoint integration could extend timeline</li>
+                    <li><strong>User Availability</strong>: Testing cycles may conflict with peak service periods</li>
+                    <li><strong>Data Access Lag</strong>: Delays in provisioning dev tenant or folder access</li>
+                    <li><strong>Scope Creep</strong>: Stakeholder enthusiasm may drive additional feature requests mid-sprint</li>
+                </ul>
+            </section>
+
+            <!-- Open Questions -->
+            <section id="questions">
+                <h2>Open Questions</h2>
+                <ol>
+                    <li><strong>SDCS Access Model</strong>: Will AVISPL provide a dev tenant with sample data, or configure folder-level access restrictions in production SharePoint?</li>
+                    <li><strong>Skills Timeline</strong>: When will remote support (TSE/TSR) skills be captured in ServiceNow, and can partial data enable pilot testing?</li>
+                    <li><strong>Knowledge Approval Authority</strong>: Who will review and approve AI-generated knowledge articles during the pilot? Is additional reviewer capacity needed?</li>
+                    <li><strong>Symphony Alert Prioritization</strong>: Should AI agent handle all Symphony alerts, or focus on specific device types/alert categories initially?</li>
+                    <li><strong>Major Case Workflow</strong>: Does a formal major/parent case process exist today, or does this need to be defined as part of the build?</li>
+                    <li><strong>User Feedback Mechanism</strong>: How should TSE/TSR/field tech feedback be collected during pilot (surveys, interviews, embedded feedback)?</li>
+                    <li><strong>Production Deployment Approval</strong>: What criteria must be met for production deployment post-pilot (metrics, stakeholder sign-off, security review)?</li>
+                    <li><strong>Integration with BKR/D365</strong>: Are external connectors for Beaker (BKR) or Dynamics 365 (D365) systems in scope for future phases?</li>
+                    <li><strong>Multi-Language Support</strong>: Are there requirements for non-English support given global service delivery teams?</li>
+                    <li><strong>Performance Expectations</strong>: What are acceptable response times for AI agent queries (e.g., troubleshooting plan generation, case enrichment)?</li>
+                </ol>
+            </section>
+
+            <!-- Risks -->
+            <section id="risks">
+                <h2>Risks</h2>
+
+                <h3>High-Impact Risks</h3>
+
+                <div class="risk-high">
+                    <h4>Risk: SharePoint integration blocked by IT security</h4>
+                    <p><strong>Impact:</strong> Cannot access SDCS documentation, limiting remote troubleshooting agent value</p>
+                    <p><strong>Mitigation:</strong></p>
+                    <ul>
+                        <li>Engage IT security early with clear use case and data governance plan</li>
+                        <li>Prepare alternative: use small sample dataset manually uploaded to ServiceNow</li>
+                        <li>Demonstrate security controls (folder-level access, audit logging)</li>
+                    </ul>
+                </div>
+
+                <div class="risk-high">
+                    <h4>Risk: Low user adoption due to organizational change resistance</h4>
+                    <p><strong>Impact:</strong> Tools unused, no measurable business outcomes</p>
+                    <p><strong>Mitigation:</strong></p>
+                    <ul>
+                        <li>Identify early adopter champions within TSE/TSR teams</li>
+                        <li>Focus on high-value, low-friction use cases first (knowledge generation)</li>
+                        <li>Provide hands-on training and celebrate quick wins publicly</li>
+                        <li>Gather and act on user feedback rapidly</li>
+                    </ul>
+                </div>
+
+                <div class="risk-high">
+                    <h4>Risk: Poor data quality yields inaccurate AI outputs</h4>
+                    <p><strong>Impact:</strong> User distrust, tool abandonment</p>
+                    <p><strong>Mitigation:</strong></p>
+                    <ul>
+                        <li>Start with high-quality data sources (manufacturer sites, structured alerts)</li>
+                        <li>Implement human-in-the-loop validation for critical decisions</li>
+                        <li>Provide transparency on data sources and confidence levels</li>
+                        <li>Establish feedback loops to flag and correct errors</li>
+                    </ul>
+                </div>
+
+                <h3>Medium-Impact Risks</h3>
+
+                <div class="risk-medium">
+                    <h4>Risk: AWA implementation delays impact dispatch coordinator agent</h4>
+                    <p><strong>Impact:</strong> Cannot demonstrate skills-based intelligent routing</p>
+                    <p><strong>Mitigation:</strong></p>
+                    <ul>
+                        <li>Focus Phase 3 on work order summarization independent of AWA</li>
+                        <li>Use manual assignment with AI-enhanced context as interim solution</li>
+                        <li>Align timeline with AVISPL's AWA deployment schedule</li>
+                    </ul>
+                </div>
+
+                <div class="risk-medium">
+                    <h4>Risk: Knowledge approval process bottleneck</h4>
+                    <p><strong>Impact:</strong> AI generates articles faster than they can be reviewed/published</p>
+                    <p><strong>Mitigation:</strong></p>
+                    <ul>
+                        <li>Implement auto-approval for high-confidence articles with post-publication review</li>
+                        <li>Provide bulk review UI for knowledge managers</li>
+                        <li>Start with small volume during pilot to calibrate review capacity</li>
+                    </ul>
+                </div>
+
+                <div class="risk-medium">
+                    <h4>Risk: Scope creep from stakeholder feature requests</h4>
+                    <p><strong>Impact:</strong> Timeline overrun, core features incomplete</p>
+                    <p><strong>Mitigation:</strong></p>
+                    <ul>
+                        <li>Maintain prioritized backlog with clear MVP definition</li>
+                        <li>Defer non-critical features to "Future Enhancements"</li>
+                        <li>Require formal change control for mid-sprint scope additions</li>
+                    </ul>
+                </div>
+
+                <div class="risk-medium">
+                    <h4>Risk: Insufficient SDCS sample data for realistic testing</h4>
+                    <p><strong>Impact:</strong> Cannot validate remote troubleshooting agent effectiveness</p>
+                    <p><strong>Mitigation:</strong></p>
+                    <ul>
+                        <li>Define minimum viable dataset early (10-15 sample jobs with CAD/BOM)</li>
+                        <li>Work with Mike Dennis team to identify representative use cases</li>
+                        <li>Supplement with manufacturer documentation indexing to demonstrate pattern</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Appendix -->
+            <section id="appendix">
+                <h2>Appendix: Supporting Materials</h2>
+                <ul>
+                    <li><strong>Workshop Transcript</strong>: ServiceNow AI Foundry & AVISPL Process Walk & Use Case Workshop (December 2025)</li>
+                    <li><strong>Client Ideas Document</strong>: Possible AI Agent Considerations (AVISPL)</li>
+                    <li><strong>ServiceNow Instance</strong>: Evaluation POC environment (provisioned)</li>
+                    <li><strong>Process Diagrams</strong>: Case Management and Dispatch workflows (referenced)</li>
+                    <li><strong>Knowledge Article White Paper</strong>: AI-Optimized Knowledge Design (ServiceNow, to be shared)</li>
+                </ul>
+
+                <div style="margin-top: 3rem; padding: 1.5rem; background: var(--bg-light); border-radius: 0.5rem;">
+                    <p><strong>Document Prepared By:</strong> AI Assistant (Claude Code)</p>
+                    <p><strong>Review Status:</strong> Draft for Stakeholder Review</p>
+                    <p><strong>Next Steps:</strong> Circulate for feedback, schedule kickoff meeting, initiate Phase 1 environment setup</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="actions">
+        <button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.sidebar nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // Update active state
+                document.querySelectorAll('.sidebar nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Intersection Observer for active navigation highlighting
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.sidebar nav a').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
