@@ -214,42 +214,7 @@ These challenges result in extended resolution times, increased operational cost
 
 ---
 
-## 8. Timeline
-
-### Phase 1: Foundation & Quick Wins (Weeks 1-4)
-- **Week 1-2**: Environment setup, data access validation (SDCS dev tenant)
-- **Week 2-3**: Deploy knowledge generation AI skill (out-of-box)
-- **Week 3-4**: Index external manufacturer content (Extron, Polycom)
-- **Deliverable**: Functional knowledge generation on case closure
-
-### Phase 2: Remote Troubleshooting Agent (Weeks 5-8)
-- **Week 5-6**: Configure external content connectors for SDCS SharePoint
-- **Week 6-7**: Build remote troubleshooting agent with multi-source queries
-- **Week 7-8**: Test with sample cases, refine data sources
-- **Deliverable**: Remote troubleshooting agent providing aggregated guidance
-
-### Phase 3: Dispatch & Assignment Intelligence (Weeks 9-12)
-- **Week 9-10**: Configure AWA for field service with skills-based routing
-- **Week 10-11**: Build dispatch coordinator agent for work order generation
-- **Week 11-12**: Test assignment workflows and summarization
-- **Deliverable**: Intelligent dispatch with contextual work orders
-
-### Phase 4: Evaluation & Iteration (Weeks 13-16)
-- **Week 13-14**: User acceptance testing with TSE/TSR/field tech personas
-- **Week 14-15**: Gather feedback, refine agent behaviors
-- **Week 15-16**: Document findings, create production deployment plan
-- **Deliverable**: Production readiness assessment and roadmap
-
-### Future Enhancements (Post-Initial Sprint)
-- Knowledge hygiene agent (Q2 2026 alignment)
-- WhatsApp/Chat integrations
-- PMV (Preventive Maintenance Visit) automation
-- Alert/event management intelligence
-- Advanced AWA for remote support team (with skills capture)
-
----
-
-## 9. Stakeholders
+## 8. Stakeholders
 
 ### Core Team
 - **Phil Caiazzo**: Service Operations Lead (AVISPL) - Decision authority, process owner
@@ -272,7 +237,7 @@ These challenges result in extended resolution times, increased operational cost
 
 ---
 
-## 10. Known Constraints or Dependencies
+## 9. Known Constraints or Dependencies
 
 ### Technical Constraints
 - **SharePoint Access**: SDCS production environment contains sensitive data (pricing, credentials). Requires either:
