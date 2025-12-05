@@ -500,8 +500,8 @@
                     <li><a href="#problem-statement">1. Problem Statement</a></li>
                     <li><a href="#goals">2. Goals & Objectives</a></li>
                     <li><a href="#personas">3. User Personas</a></li>
-                    <li><a href="#use-cases">4. Use Cases</a></li>
-                    <li><a href="#features">5. Key Features</a></li>
+                    <li><a href="#use-cases">4. Use Cases & User Stories</a></li>
+                    <li><a href="#features">5. Built Targets</a></li>
                     <li><a href="#metrics">6. Success Metrics</a></li>
                     <li><a href="#assumptions">7. Assumptions</a></li>
                     <li><a href="#timeline">8. Timeline</a></li>
@@ -668,7 +668,7 @@
                 </div>
             </section>
 
-            <!-- Section 4: Use Cases -->
+            <!-- Section 4: Use Cases & User Stories -->
             <section id="use-cases">
                 <h2>4. Use Cases</h2>
 
@@ -711,35 +711,36 @@
                 <div class="use-case">
                     <h3>UC-5: Procedural Knowledge Assistant</h3>
                     <span class="actor">TSE, TSR, Field Technician</span>
-                    <p><strong>Scenario:</strong> A TSE needs to create a customer quote but doesn't remember the exact procedure. The AI Assistant is invoked directly from ServiceNow and provides step-by-step guidance by retrieving the relevant how-to documentation from SharePoint. The assistant answers follow-up questions like "What approval level is needed for discounts over 20%?" by accessing internal policy documentation and knowledge base articles.</p>
+                    <p><strong>Scenario:</strong> A TSE needs to create a customer quote but doesn't remember the exact procedure. The AI Assistant is invoked directly from ServiceNow and provides step-by-step guidance by retrieving the relevant how-to documentation from SharePoint.</p>
                     <div class="outcome">
                         <strong>Outcome:</strong> Immediate access to procedural knowledge without leaving ServiceNow, reducing time spent searching documentation and enabling faster task completion
                     </div>
                 </div>
             </section>
 
-            <!-- Section 5: Key Features -->
+            <!-- Section 5: Build Targets -->
             <section id="features">
-                <h2>5. Key Features</h2>
+                <h2>5. Build Targets</h2>
 
                 <div class="feature-box">
-                    <h3>Priority 1: Knowledge Generation Assistant</h3>
+                    <h3>Build Target 1: Remote Troubleshooting Intelligence Agent</h3>
                     <h4>Purpose</h4>
-                    <p>Reduce friction in knowledge article creation</p>
+                    <p>Aggregate multi-source data to provide comprehensive troubleshooting guidance for TSE remote resolution</p>
                     <h4>Capabilities</h4>
                     <ul>
-                        <li>Auto-draft knowledge articles from resolution notes</li>
-                        <li>Extract key information: problem, solution, equipment, steps</li>
-                        <li>Format content for AI consumption (simple, structured)</li>
-                        <li>Route to knowledge approval workflow</li>
-                        <li>Track knowledge coverage gaps</li>
+                        <li>Query SDCS SharePoint for as-built CAD drawings and bills of materials</li>
+                        <li>Search ServiceNow case history for location/equipment patterns</li>
+                        <li>Index and retrieve manufacturer documentation (Extron, Polycom, etc.)</li>
+                        <li>Generate prioritized troubleshooting steps based on problem description</li>
+                        <li>Present visual documentation (network diagrams, schematics) with contextual analysis</li>
+                        <li>Suggest remote vs. on-site resolution pathway</li>
                     </ul>
                 </div>
 
                 <div class="feature-box">
-                    <h3>Priority 2: Dispatch Coordinator Agent</h3>
+                    <h3>Build Target 2: Intelligent Field Dispatch Coordinator</h3>
                     <h4>Purpose</h4>
-                    <p>Optimize field service assignment and preparation</p>
+                    <p>Optimize field service assignment and preparation for on-site service delivery</p>
                     <h4>Capabilities</h4>
                     <ul>
                         <li>Evaluate technician skills, location, and availability</li>
@@ -752,14 +753,44 @@
                 </div>
 
                 <div class="feature-box">
-                    <h3>Priority 3: AI Assistant for Agent Personas</h3>
+                    <h3>Build Target 3: Automated Knowledge Generation Assistant</h3>
                     <h4>Purpose</h4>
-                    <p>Provide in-context assistance within ServiceNow</p>
+                    <p>Reduce friction in knowledge article creation and increase institutional knowledge capture</p>
+                    <h4>Capabilities</h4>
+                    <ul>
+                        <li>Auto-draft knowledge articles from resolution notes</li>
+                        <li>Extract key information: problem, solution, equipment, steps</li>
+                        <li>Format content for AI consumption (simple, structured)</li>
+                        <li>Route to knowledge approval workflow</li>
+                        <li>Track knowledge coverage gaps</li>
+                    </ul>
+                </div>
+
+                <div class="feature-box">
+                    <h3>Build Target 4: Major Case Pattern Detection Agent</h3>
+                    <h4>Purpose</h4>
+                    <p>Identify widespread issues and reduce redundant troubleshooting through pattern recognition</p>
+                    <h4>Capabilities</h4>
+                    <ul>
+                        <li>Analyze incoming cases for symptom and device model patterns</li>
+                        <li>Suggest creating or associating with major/parent cases</li>
+                        <li>Auto-link related child cases to major cases</li>
+                        <li>Alert case managers to emerging widespread issues</li>
+                        <li>Aggregate common resolutions across related cases</li>
+                    </ul>
+                </div>
+
+                <div class="feature-box">
+                    <h3>Build Target 5: Procedural Knowledge Assistant</h3>
+                    <h4>Purpose</h4>
+                    <p>Provide in-context procedural guidance within ServiceNow for all agent personas</p>
                     <h4>Capabilities</h4>
                     <ul>
                         <li>Answer procedural questions ("How do I create a quote?")</li>
                         <li>Access knowledge base and SharePoint how-to documentation</li>
                         <li>Provide equipment-specific guidance</li>
+                        <li>Support conversational follow-up questions</li>
+                        <li>Retrieve internal policy documentation</li>
                     </ul>
                 </div>
             </section>
@@ -770,7 +801,6 @@
 
                 <h3>Operational Efficiency</h3>
                 <ul>
-                    <li><strong>Case Triage Time</strong>: Average time from case creation to "information complete" status</li>
                     <li><strong>Remote Resolution Rate</strong>: Percentage of cases closed without field dispatch</li>
                     <li><strong>Field Dispatch Duration</strong>: Average time spent on-site per work order task</li>
                     <li><strong>Queue Wait Time</strong>: Average time cases spend in assignment queues</li>
@@ -808,7 +838,7 @@
                 <h3>Technical Assumptions</h3>
                 <ul>
                     <li>ServiceNow evaluation instance remains accessible and stable</li>
-                    <li>SDCS SharePoint can be accessed via external content connectors or dev tenant</li>
+                    <li>SDCS SharePoint can be accessed via external content connectors or dev tenant (or reasonable simulation of Sharepoint access).</li>
                     <li>Field service skills matrix population will be completed for technicians</li>
                     <li>Symphony alert integration continues to generate cases as structured data</li>
                     <li>Manufacturer websites (Extron, Polycom, etc.) are publicly accessible for indexing</li>
@@ -1120,9 +1150,9 @@
                 </ul>
 
                 <div style="margin-top: 3rem; padding: 1.5rem; background: var(--bg-light); border-radius: 0.5rem;">
-                    <p><strong>Document Prepared By:</strong> AI Assistant (Claude Code)</p>
+                    <p><strong>Document Prepared By:</strong> Chris Clancy, Principal Consultant - AI Foundry</p>
                     <p><strong>Review Status:</strong> Draft for Stakeholder Review</p>
-                    <p><strong>Next Steps:</strong> Circulate for feedback, schedule kickoff meeting, initiate Phase 1 environment setup</p>
+                    <p><strong>Next Steps:</strong> Circulate for feedback, modify as necessary, initiate build</p>
                 </div>
             </section>
         </main>

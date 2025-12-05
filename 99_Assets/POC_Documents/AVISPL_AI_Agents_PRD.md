@@ -106,19 +106,20 @@ These challenges result in extended resolution times, increased operational cost
 
 ---
 
-## 5. Key Features
+## 5. Build Targets
 
-### Priority 1: Knowledge Generation Assistant
-**Purpose**: Reduce friction in knowledge article creation
+### Build Target 1: Remote Troubleshooting Intelligence Agent
+**Purpose**: Aggregate multi-source data to provide comprehensive troubleshooting guidance for TSE remote resolution
 **Capabilities**:
-- Auto-draft knowledge articles from resolution notes
-- Extract key information: problem, solution, equipment, steps
-- Format content for AI consumption (simple, structured)
-- Route to knowledge approval workflow
-- Track knowledge coverage gaps
+- Query SDCS SharePoint for as-built CAD drawings and bills of materials
+- Search ServiceNow case history for location/equipment patterns
+- Index and retrieve manufacturer documentation (Extron, Polycom, etc.)
+- Generate prioritized troubleshooting steps based on problem description
+- Present visual documentation (network diagrams, schematics) with contextual analysis
+- Suggest remote vs. on-site resolution pathway
 
-### Priority 2: Dispatch Coordinator Agent
-**Purpose**: Optimize field service assignment and preparation
+### Build Target 2: Intelligent Field Dispatch Coordinator
+**Purpose**: Optimize field service assignment and preparation for on-site service delivery
 **Capabilities**:
 - Evaluate technician skills, location, and availability
 - Match case requirements to technician capabilities
@@ -127,12 +128,32 @@ These challenges result in extended resolution times, increased operational cost
 - Highlight equipment-specific documentation
 - Aggregate upstream troubleshooting attempts
 
-### Priority 3: AI Assistant for Agent Personas
-**Purpose**: Provide in-context assistance within ServiceNow
+### Build Target 3: Automated Knowledge Generation Assistant
+**Purpose**: Reduce friction in knowledge article creation and increase institutional knowledge capture
+**Capabilities**:
+- Auto-draft knowledge articles from resolution notes
+- Extract key information: problem, solution, equipment, steps
+- Format content for AI consumption (simple, structured)
+- Route to knowledge approval workflow
+- Track knowledge coverage gaps
+
+### Build Target 4: Major Case Pattern Detection Agent
+**Purpose**: Identify widespread issues and reduce redundant troubleshooting through pattern recognition
+**Capabilities**:
+- Analyze incoming cases for symptom and device model patterns
+- Suggest creating or associating with major/parent cases
+- Auto-link related child cases to major cases
+- Alert case managers to emerging widespread issues
+- Aggregate common resolutions across related cases
+
+### Build Target 5: Procedural Knowledge Assistant
+**Purpose**: Provide in-context procedural guidance within ServiceNow for all agent personas
 **Capabilities**:
 - Answer procedural questions ("How do I create a quote?")
 - Access knowledge base and SharePoint how-to documentation
 - Provide equipment-specific guidance
+- Support conversational follow-up questions
+- Retrieve internal policy documentation
 
 ---
 
