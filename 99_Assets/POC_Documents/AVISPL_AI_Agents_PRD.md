@@ -277,24 +277,6 @@ These challenges result in extended resolution times, increased operational cost
 
 1. **SDCS Access Model**: Will AVISPL provide a dev tenant with sample data, or configure folder-level access restrictions in production SharePoint?
 
-2. **Skills Timeline**: When will remote support (TSE/TSR) skills be captured in ServiceNow, and can partial data enable pilot testing?
-
-3. **Knowledge Approval Authority**: Who will review and approve AI-generated knowledge articles during the pilot? Is additional reviewer capacity needed?
-
-4. **Symphony Alert Prioritization**: Should AI agent handle all Symphony alerts, or focus on specific device types/alert categories initially?
-
-5. **Major Case Workflow**: Does a formal major/parent case process exist today, or does this need to be defined as part of the build?
-
-6. **User Feedback Mechanism**: How should TSE/TSR/field tech feedback be collected during pilot (surveys, interviews, embedded feedback)?
-
-7. **Production Deployment Approval**: What criteria must be met for production deployment post-pilot (metrics, stakeholder sign-off, security review)?
-
-8. **Integration with BKR/D365**: Are external connectors for Beaker (BKR) or Dynamics 365 (D365) systems in scope for future phases?
-
-9. **Multi-Language Support**: Are there requirements for non-English support given global service delivery teams?
-
-10. **Performance Expectations**: What are acceptable response times for AI agent queries (e.g., troubleshooting plan generation, case enrichment)?
-
 ---
 
 ## Risks
@@ -347,13 +329,6 @@ These challenges result in extended resolution times, increased operational cost
 - Defer non-critical features to "Future Enhancements"
 - Require formal change control for mid-sprint scope additions
 
-**Risk**: Insufficient SDCS sample data for realistic testing
-**Impact**: Cannot validate remote troubleshooting agent effectiveness
-**Mitigation**:
-- Define minimum viable dataset early (10-15 sample jobs with CAD/BOM)
-- Work with Mike Dennis team to identify representative use cases
-- Supplement with manufacturer documentation indexing to demonstrate pattern
-
 ---
 
 ## Appendix: Supporting Materials
@@ -362,7 +337,6 @@ These challenges result in extended resolution times, increased operational cost
 - **Client Ideas Document**: Possible AI Agent Considerations (AVISPL)
 - **ServiceNow Instance**: Evaluation POC environment (provisioned)
 - **Process Diagrams**: Case Management and Dispatch workflows (referenced)
-- **Knowledge Article White Paper**: AI-Optimized Knowledge Design (ServiceNow, to be shared)
 
 ---
 
